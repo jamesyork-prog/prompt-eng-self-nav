@@ -1,0 +1,583 @@
+/* main.css - Final Definitive Version */
+@import "tailwindcss";
+
+body {
+  font-family: 'Outfit', sans-serif;
+  overflow: hidden;
+  background-color: #000;
+}
+
+.slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  opacity: 0;
+  transition: opacity 0.6s ease-in-out;
+  visibility: hidden;
+  z-index: 0;
+}
+.slide.active {
+  opacity: 1;
+  visibility: visible;
+  z-index: 10;
+}
+
+.nav-arrow {
+  position: fixed;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(0, 0, 0, 0.1);
+  color: rgba(0, 0, 0, 0.4);
+  border-radius: 9999px;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out, opacity 0.5s ease-in-out;
+  z-index: 100;
+  border: none;
+}
+#nav-left { left: 24px; }
+#nav-right { right: 24px; }
+
+.progress-bar-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 8px;
+  background: #222;
+  z-index: 999;
+}
+.progress-bar {
+  height: 8px;
+  background: linear-gradient(to right, #FF555E, #e0e0e0);
+  border-radius: 4px;
+  transition: width 0.4s;
+}
+
+.nav-arrow.nav-arrow-hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+.hide-cursor {
+  cursor: none !important;
+}
+
+/* Logo Carousel Styles */
+.logo-carousel {
+  width: 100%;
+  max-width: 60vw;
+  overflow: hidden;
+  position: relative;
+  margin-top: 6rem;
+}
+.logo-carousel::before,
+.logo-carousel::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  width: 100px;
+  height: 100%;
+  z-index: 2;
+}
+.logo-carousel::before {
+  left: 0;
+  background: linear-gradient(to right, white, rgba(255, 255, 255, 0));
+}
+.logo-carousel::after {
+  right: 0;
+  background: linear-gradient(to left, white, rgba(255, 255, 255, 0));
+}
+.logo-track {
+  display: flex;
+  width: fit-content;
+  animation: scroll 40s linear infinite;
+}
+.logo-set {
+  display: flex;
+  align-items: center;
+  gap: 4rem;
+  flex-shrink: 0;
+  padding-right: 4rem;
+}
+.logo-item {
+  height: 30px;
+  width: auto;
+  object-fit: contain;
+}
+@keyframes scroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+.logo-openai { height: 55px; }
+.logo-gemini { height: 48px; }
+.logo-notebook { height: 20px; }
+
+/* Chatbox Animation Styles */
+#typing-cursor,
+#s4-basic-cursor, #s4-tcrei-cursor,
+#s6-cursor, #s7-cursor {
+  display: inline-block;
+  font-weight: 300;
+  color: #aeb0b2;
+  animation: blink-cursor 1s step-end infinite;
+}
+@keyframes blink-cursor {
+  from, to { opacity: 1; }
+  50% { opacity: 0; }
+}
+#user-prompt-bubble-container, #ai-response-bubble-container { min-height: 50px; }
+#s4-basic-typed-text, #s4-tcrei-typed-text { white-space: pre-wrap; word-break: break-word; }
+#prompt-input-area, #s4-basic-input-area, #s4-tcrei-input-area, #s6-input-area, #s7-input-area {
+  min-width: 0;
+}
+
+/* TCREI Flowchart Styles */
+.flow-box rect {
+  fill: rgba(243, 244, 246, 0.7);
+  stroke: rgba(255, 255, 255, 0.5);
+  stroke-width: 1;
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+}
+.flow-box text {
+  text-anchor: middle;
+  font-family: 'Outfit', sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+  fill: #1f2937;
+}
+.flow-arrow {
+  stroke: #FF555E;
+  stroke-width: 3;
+  fill: none;
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 1000;
+  filter: drop-shadow(0 0 5px rgba(255, 85, 94, 0.7));
+}
+.flow-text {
+  text-anchor: middle;
+  font-family: 'Outfit', sans-serif;
+  font-weight: 500;
+  font-size: 22px;
+  fill: #FF555E;
+  filter: drop-shadow(0 0 5px rgba(255, 85, 94, 0.7));
+}
+#tcrei-flowchart .flow-box, #tcrei-flowchart .flow-text, #tcrei-flowchart .flow-arrow {
+  opacity: 0;
+}
+#tcrei-flowchart.start-animation .flow-box, #tcrei-flowchart.start-animation .flow-text {
+  animation: fade-in 0.5s ease-out forwards;
+}
+#tcrei-flowchart.start-animation .flow-arrow {
+  animation: draw-line 0.8s ease-in-out forwards, fade-in 0.2s ease-out forwards;
+}
+@keyframes draw-line { to { stroke-dashoffset: 0; } }
+@keyframes fade-in { to { opacity: 1; } }
+#tcrei-flowchart.start-animation #flow-box-task { animation-delay: 0s; }
+#tcrei-flowchart.start-animation #flow-arrow-1 { animation-delay: 0.3s; }
+#tcrei-flowchart.start-animation #flow-box-context { animation-delay: 0.8s; }
+#tcrei-flowchart.start-animation #flow-arrow-2 { animation-delay: 1.1s; }
+#tcrei-flowchart.start-animation #flow-box-references { animation-delay: 1.6s; }
+#tcrei-flowchart.start-animation #flow-arrow-3 { animation-delay: 1.9s; }
+#tcrei-flowchart.start-animation #flow-box-evaluate { animation-delay: 2.4s; }
+#tcrei-flowchart.start-animation #flow-arrow-iterate { animation-delay: 2.7s; }
+#tcrei-flowchart.start-animation #flow-text-iterate { animation-delay: 3.2s; }
+
+/* ---- Slide 6 & 7 Highlighting Styles (Final Corrected Version) ---- */
+
+.prompt-highlight {
+  border-bottom: 2px solid;
+  padding-bottom: 1px;
+}
+
+#s6-callouts-container, #s7-callouts-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+/* Individual callout group styling */
+.s6-callout {
+  opacity: 0;
+  transition: opacity 0.4s ease-in-out;
+  position: absolute;
+  top: var(--top);
+  left: var(--left, auto);
+  right: var(--right, auto);
+
+  /* THIS IS THE DEFINITIVE FIX FOR THE SHRINKING PROBLEM */
+  width: 160px;
+  height: auto;
+}
+
+.s6-callout img {
+  width: 100%; /* Make the SVG image fill its correctly-sized container */
+}
+
+.s6-callout.visible {
+  opacity: 1;
+}
+
+/* --- Positioning Variables --- */
+#s6-callout-persona { --top: -55px; --left: 120px; }
+#s6-callout-task { --top: 63px; --left: -143px; }
+#s6-callout-format { --top: 94px; --right: -113px; }
+
+#s7-callout-audience { --top: 60px; --left: 751px; }
+#s7-callout-goal { --top: 120px; --left: -149px; }
+#s7-callout-constraints { --top: 192px; --right: -143px; }
+
+
+/* --- Color Classes --- */
+.prompt-highlight.highlight-blue { border-color: #3257c9; }
+.prompt-highlight.highlight-yellow { border-color: #ffdf2b; }
+.prompt-highlight.highlight-coral { border-color: #FF555E; }
+
+/* ---- Slide 8: Reference Grid Styles ---- */
+.reference-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem; /* 24px */
+}
+
+.reference-card {
+  position: relative; /* Add this line to fix the layering issue */
+  background-color: #f9fafb; /* gray-50 */
+  border: 1px solid #e5e7eb; /* gray-200 */
+  border-radius: 0.75rem; /* rounded-xl */
+  padding: 1.5rem; /* 24px */
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  opacity: 0; /* Start hidden for animation */
+  transform: translateY(20px);
+}
+
+.reference-card.animate-in {
+  animation: card-fade-in 0.6s ease-out forwards;
+}
+
+@keyframes card-fade-in {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.reference-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+.card-icon {
+  width: 2.5rem; /* 40px */
+  height: 2.5rem; /* 40px */
+  margin-bottom: 1rem;
+  color: #FF555E; /* flash-coral */
+}
+
+.card-title {
+  font-size: 1.25rem; /* text-xl */
+  font-weight: 700; /* font-bold */
+  margin-bottom: 0.5rem;
+}
+
+.card-description {
+  font-size: 1rem; /* text-base */
+  color: #4b5563; /* gray-600 */
+  margin-bottom: 1rem;
+}
+
+.card-use-cases {
+  list-style-type: disc;
+  padding-left: 1.25rem;
+  font-size: 0.875rem; /* text-sm */
+  color: #6b7280; /* gray-500 */
+  line-height: 1.5;
+}
+
+/* Responsive Grid Breakpoints */
+@media (max-width: 1024px) {
+  .reference-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .reference-grid {
+    grid-template-columns: 1fr;
+  }
+  .slide {
+    padding: 2rem 1.5rem; /* Adjust padding for smaller screens */
+  }
+}
+
+/* ---- Slide 9: Evaluate Animation Styles ---- */
+#s9-incorrect-answer.highlight {
+  background-color: #ffe4e6; /* A light red/pink for highlighting */
+  border-radius: 4px;
+  padding: 0 4px;
+  transition: background-color 0.3s;
+}
+
+/* ---- Slide 10: Iterate Triangle Styles (Revised with Image Arrows) ---- */
+.s10-triangle-container {
+  position: relative;
+}
+
+.s10-card {
+  position: absolute;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  background-color: white;
+  padding: 0.75rem 1.25rem;
+  border-radius: 9999px;
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.07), 0 2px 4px -2px rgba(0, 0, 0, 0.04);
+  font-weight: 500;
+  color: #374151;
+  z-index: 10; /* Ensure cards are above arrows */
+}
+
+#s10-card-prompt {
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+#s10-card-response {
+  bottom: 0;
+  right: 0;
+}
+#s10-card-refined {
+  bottom: 0;
+  left: 0;
+}
+
+/* New styles for positioning the arrow images */
+.s10-arrow {
+  position: absolute;
+  z-index: 5; /* Place arrows behind cards */
+}
+
+/* NOTE: You may need to adjust these values to fit your SVGs perfectly */
+#s10-arrow-1 {
+  top: 320px;
+  left: 187px;
+  transform: rotate(0deg);
+}
+#s10-arrow-2 {
+  bottom: 53px;
+  left: 88px;
+  transform: translateX(-50%) rotate(0 deg);
+}
+#s10-arrow-3 {
+  top: 58px;
+  right: 90px;
+  transform: rotate(0 deg) scaleX(-1); /* Flips the arrow */
+}
+
+.s10-user-icon {
+  color: #FF555E;
+}
+
+/* ---- Slide 11: Interactive Tabs Styles (Corrected) ---- */
+#s11-tab-container {
+  display: flex;
+  width: 100%;
+  max-width: 100%; /* Changed from max-w-3xl to allow full width */
+  border-bottom: 2px solid #e5e7eb; /* gray-200 */
+}
+
+.s11-tab-button {
+  flex-grow: 1;
+  padding: 1rem 0.5rem;
+  font-size: 1.125rem; /* text-lg */
+  font-weight: 600;
+  color: #6b7280; /* gray-500 */
+  background-color: transparent;
+  border: none;
+  border-bottom: 3px solid transparent;
+  transition: all 0.3s ease-in-out;
+  margin-bottom: -2px; /* Overlap the container's border */
+  cursor: pointer;
+}
+
+.s11-tab-button:hover {
+  background-color: #f9fafb; /* gray-50 */
+  color: #111827; /* gray-900 */
+}
+
+.s11-tab-button.active {
+  color: #FF555E; /* flash-coral */
+  border-bottom-color: #FF555E;
+}
+
+#s11-content-container {
+  padding-top: 1.5rem;
+  width: 100%;
+  max-width: 48rem; /* Increased width for content */
+}
+
+.s11-content-pane {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  opacity: 0;
+  transition: opacity 0.4s ease-in-out, transform 0.4s ease-in-out;
+  pointer-events: none;
+}
+
+.s11-content-pane.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.s11-content-title {
+  font-size: 1.75rem; /* ~28px */
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.s11-content-description {
+  font-size: 1.25rem; /* text-xl */
+  color: #4b5563; /* gray-600 */
+  line-height: 1.6;
+}
+
+.s11-example {
+  margin-top: 1.5rem;
+  padding: 1rem;
+  background-color: #f9fafb;
+  border-radius: 0.5rem;
+  border: 1px solid #f3f4f6;
+  font-size: 1.125rem;
+}
+
+/* ---- Slide 12: Refinement Strategies ---- */
+.s12-grid-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+  width: 100%;
+  max-width: 64rem;
+}
+
+.s12-strategy-card {
+  background-color: #f9fafb; /* gray-50 */
+  border: 1px solid #e5e7eb; /* gray-200 */
+  border-radius: 0.75rem; /* rounded-xl */
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.s12-icon {
+  width: 3rem;
+  height: 3rem;
+  color: #FF555E; /* flash-coral */
+  margin-bottom: 1rem;
+}
+
+.s12-title {
+  font-size: 1.5rem; /* text-2xl */
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+}
+
+.s12-description {
+  font-size: 1.125rem; /* text-lg */
+  color: #4b5563; /* gray-600 */
+  line-height: 1.6;
+}
+
+/* Responsive Grid for smaller screens */
+@media (max-width: 768px) {
+  .s12-grid-container {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ---- Slide 13: Responsible AI Styles ---- */
+.s13-grid-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+  width: 100%;
+  max-width: 64rem;
+}
+
+.s13-card {
+  background-color: #f9fafb; /* gray-50 */
+  border: 1px solid #e5e7eb; /* gray-200 */
+  border-radius: 0.75rem; /* rounded-xl */
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.s13-icon {
+  width: 3rem;
+  height: 3rem;
+  color: #FF555E; /* flash-coral */
+  margin-bottom: 1rem;
+}
+
+.s13-title {
+  font-size: 1.5rem; /* text-2xl */
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+}
+
+.s13-description {
+  font-size: 1.125rem; /* text-lg */
+  color: #4b5563; /* gray-600 */
+  line-height: 1.6;
+}
+
+/* Responsive Grid for smaller screens */
+@media (max-width: 768px) {
+  .s13-grid-container {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ---- Key Takeaways Slide Styles ---- */
+.takeaway-card {
+  display: flex;
+  align-items: flex-start; /* Aligns number to the top of the text */
+  gap: 1.5rem; /* 24px */
+  background-color: #f9fafb; /* gray-50 */
+  border: 1px solid #e5e7eb; /* gray-200 */
+  border-radius: 0.75rem; /* rounded-xl */
+  padding: 1.5rem;
+  text-align: left;
+}
+
+.takeaway-number {
+  font-size: 2.25rem; /* text-4xl */
+  font-weight: 700;
+  color: #FF555E; /* flash-coral */
+  line-height: 1;
+}
+
+.takeaway-text {
+  font-size: 1.25rem; /* text-xl */
+  line-height: 1.6;
+  color: #374151; /* gray-700 */
+}

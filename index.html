@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mastering Prompt Engineering - Flash</title>
+  <link rel="stylesheet" href="css/dist/output.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- Progress Bar -->
+  <div class="progress-bar-bg">
+    <div id="progress-bar" class="progress-bar" style="width:0"></div>
+  </div>
+
+  <main class="relative w-full h-screen">
+
+    <!-- Slide 1: Title + Welcome -->
+    <section class="slide active bg-white flex flex-col justify-center items-center text-center p-8" data-theme="light">
+      <h1 class="text-flash-black font-bold text-6xl md:text-8xl mb-8">Mastering Prompt Engineering</h1>
+      <p class="text-flash-black text-xl md:text-2xl font-light mb-16">A Flash AI Presentation</p>
+      <div class="absolute bottom-10 left-1/2 -translate-x-1/2">
+        <svg width="100" height="25" viewBox="0 0 100 25"><rect width="100" height="25" rx="4" fill="#E0E0E0"/><text x="50" y="17" font-family="Outfit, sans-serif" font-size="12" font-weight="bold" fill="#000000" text-anchor="middle">FLASH</text></svg>
+      </div>
+    </section>
+    <!-- Slide 2: Why This Matters at Flash -->
+
+    <section class="slide bg-white flex flex-col justify-center items-center text-center p-16" data-theme="light">
+      <h2 class="text-flash-black font-bold text-5xl mb-8">Why This Matters at Flash</h2>
+      <p class="text-flash-black text-2xl font-light max-w-3xl mx-auto mb-16">
+        Generative AI is becoming core to our daily work. To get real value - whether you’re using Gemini, NotebookLM, ChatGPT, or Claude - you need to communicate effectively with these systems. Think of today as learning a new language, one that automates tasks, accelerates research, and amplifies your expertise.
+      </p>
+      <p id="slide2-quote" class="text-flash-black text-2xl italic font-light max-w-3xl mx-auto transition-opacity duration-700 opacity-0">
+        "The goal isn't to replace your expertise — it's to amplify it."
+      </p>
+      <div class="logo-carousel">
+        <div class="logo-track">
+          <div class="logo-set">
+            <img src="assets/notebook-logo.svg" alt="NotebookLM logo" class="logo-item logo-notebook"/>
+            <img src="assets/Claude-AI-logo.svg" alt="Claude logo" class="logo-item"/>
+            <img src="assets/chatgpt-logo.png" alt="ChatGPT Logo" class="logo-item"/>
+            <img src="assets/OpenAI-black-wordmark.svg" alt="OpenAI Logo" class="logo-item logo-openai"/>
+            <img src="assets/gemini-name-logo.png" alt="Gemini Name Logo" class="logo-item logo-gemini"/>
+            <img src="assets/cursor-logo.svg" alt="Cursor logo" class="logo-item"/>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Slide 3: What is a Prompt? -->
+    <section class="slide bg-white flex flex-col justify-center items-center text-center p-16" data-theme="light">
+      <h2 class="text-flash-black font-bold text-5xl mb-8">What is a Prompt?</h2>
+      <p class="text-flash-black text-2xl font-light max-w-3xl mx-auto">
+        A prompt is the instruction or question you give to an AI system. The quality of your prompt determines the quality of your output—prompting is both an art and a science.
+      </p>
+      <div class="w-full max-w-3xl mx-auto mt-12 flex flex-col gap-4">
+        <div id="user-prompt-bubble-container" class="flex justify-end opacity-0 transition-all duration-500 transform translate-y-4 min-h-[50px]">
+          <div id="user-prompt-bubble" class="bg-gray-100 shadow-md text-gray-800 p-3 rounded-xl max-w-md"></div>
+        </div>
+        <div id="ai-response-bubble-container" class="flex justify-start opacity-0 transition-all duration-500 transform translate-y-4 min-h-[50px]">
+          <div id="ai-response-bubble" class="bg-gray-100 shadow-md text-gray-800 p-3 rounded-xl max-w-md">... seriously?</div>
+        </div>
+      </div>
+      <div id="gemini-chatbox" class="w-full max-w-3xl mx-auto mt-6 p-4 rounded-full bg-[#333537] flex items-center">
+        <div class="flex-shrink-0"><img src="assets/gemini-logo.png" alt="Gemini Icon" class="w-6 h-6"></div>
+        <div id="prompt-input-area" class="flex-grow text-left text-gray-400 ml-4">
+          <span id="placeholder-text">Enter a prompt for Gemini</span>
+          <span id="typed-text"></span><span id="typing-cursor" class="opacity-0">|</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Slide 4: Example Comparison -->
+    <section class="slide bg-white flex flex-col justify-center items-center text-center p-12" data-theme="light">
+      <h3 class="text-flash-black font-bold text-4xl mb-8">Prompt Example</h3>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-10 w-full max-w-5xl">
+        <div class="flex flex-col">
+          <div class="text-flash-black text-xl font-light mb-2">Basic Prompt</div>
+          <div id="s4-basic-bubble-container" class="opacity-0 transition-all duration-500 transform translate-y-4 flex-grow">
+            <div id="s4-basic-bubble" class="bg-gray-100 shadow-md text-gray-800 p-4 rounded-xl max-w-md"></div>
+          </div>
+          <div class="mt-4 p-4 rounded-full bg-[#333537] flex items-center">
+            <div class="flex-shrink-0"><img src="assets/gemini-logo.png" alt="Gemini Icon" class="w-6 h-6"></div>
+            <div id="s4-basic-input-area" class="flex-grow text-left text-gray-400 ml-4">
+              <span id="s4-basic-placeholder">Enter a prompt for Gemini</span>
+              <span id="s4-basic-typed-text"></span><span id="s4-basic-cursor" class="opacity-0">|</span>
+            </div>
+          </div>
+        </div>
+        <div class="flex flex-col">
+          <div class="text-flash-black text-xl font-light mb-2">TCREI Prompt</div>
+          <div id="s4-tcrei-bubble-container" class="opacity-0 transition-all duration-500 transform translate-y-4 flex-grow">
+            <div id="s4-tcrei-bubble" class="bg-gray-100 shadow-md text-gray-800 p-4 rounded-xl max-w-md text-left"></div>
+          </div>
+          <div class="mt-4 p-4 rounded-full bg-[#333537] flex items-center">
+            <div class="flex-shrink-0"><img src="assets/gemini-logo.png" alt="Gemini Icon" class="w-6 h-6"></div>
+            <div id="s4-tcrei-input-area" class="flex-grow text-left text-gray-400 ml-4">
+              <span id="s4-tcrei-placeholder">Enter a prompt for Gemini</span>
+              <span id="s4-tcrei-typed-text"></span><span id="s4-tcrei-cursor" class="opacity-0">|</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Slide 5: TCREI Framework Overview (Redesigned) -->
+    <section class="slide bg-white flex flex-col justify-center items-center text-center p-12" data-theme="light">
+    <h2 class="text-flash-black font-bold text-5xl mb-4">The TCREI Framework</h2>
+      <p class="text-flash-black text-2xl font-light max-w-3xl mx-auto mb-12">
+        A systematic approach for getting the best from any AI tool.
+      </p>
+      
+      <div class="w-full max-w-4xl mx-auto">
+        <svg id="tcrei-flowchart" viewBox="0 0 800 300" class="w-full">
+            <defs>
+                <marker id="arrowhead" viewBox="0 0 10 10" refX="8" refY="5"
+                    markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                    <path d="M 0 0 L 10 5 L 0 10 z" fill="#FF555E" />
+                </marker>
+
+                <marker id="arrowhead-iterate" viewBox="0 0 10 10" refX="8" refY="5"
+                    markerWidth="6" markerHeight="6" orient="245">
+                    <path d="M 0 0 L 10 5 L 0 10 z" fill="#FF555E" />
+                </marker>
+            </defs>
+
+            <g id="flow-box-task" class="flow-box">
+              <rect x="50" y="50" width="150" height="60" rx="8" />
+              <text x="125" y="85">Task</text>
+            </g>
+            <g id="flow-box-context" class="flow-box">
+              <rect x="250" y="50" width="150" height="60" rx="8" />
+              <text x="325" y="85">Context</text>
+            </g>
+            <g id="flow-box-references" class="flow-box">
+              <rect x="450" y="50" width="150" height="60" rx="8" />
+              <text x="525" y="85">References</text>
+            </g>
+            <g id="flow-box-evaluate" class="flow-box">
+              <rect x="650" y="50" width="150" height="60" rx="8" />
+              <text x="725" y="85">Evaluate</text>
+            </g>
+
+            <path id="flow-arrow-1" class="flow-arrow" d="M 200 80 H 250" marker-end="url(#arrowhead)" />
+            <path id="flow-arrow-2" class="flow-arrow" d="M 400 80 H 450" marker-end="url(#arrowhead)" />
+            <path id="flow-arrow-3" class="flow-arrow" d="M 600 80 H 650" marker-end="url(#arrowhead)" />
+
+            <path id="flow-arrow-iterate" class="flow-arrow" d="M 725 110 C 725 190, 125 190, 125 110" marker-end="url(#arrowhead-iterate)" />
+            <text id="flow-text-iterate" class="flow-text" x="425" y="210">Iterate & Refine</text>
+        </svg>
+      </div>
+    </section>
+
+    <!-- Slide 6: Task -->
+    <section class="slide bg-white flex flex-col justify-center items-center text-center p-16" data-theme="light">
+      <h3 class="text-flash-black font-bold text-4xl mb-8">Let's break down a strong <span class="text-flash-coral">Task</span></h3>
+
+      <div class="relative w-full max-w-3xl mx-auto mt-12">
+
+        <div id="s6-prompt-bubble-container" class="opacity-0 transition-all duration-500 transform translate-y-4 min-h-[220px] relative bg-gray-100 shadow-md text-gray-800 p-6 rounded-xl text-left">
+
+          <p id="s6-prompt-text" class="text-lg leading-relaxed"></p>
+
+          <div id="s6-callouts-container">
+            <svg width="0" height="0" style="position:absolute;">
+              <defs>
+                <marker id="arrowhead-blue" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#3257c9" /></marker>
+                <marker id="arrowhead-yellow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#ffdf2b" /></marker>
+                <marker id="arrowhead-coral" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#FF555E" /></marker>
+              </defs>
+            </svg>
+            <div id="s6-callout-persona" class="s6-callout"><img src="assets/callout-persona.svg" alt="Persona Callout"></div>
+            <div id="s6-callout-task" class="s6-callout"><img src="assets/callout-task.svg" alt="Task Callout"></div>
+            <div id="s6-callout-format" class="s6-callout"><img src="assets/callout-format.svg" alt="Format Callout"></div>
+          </div>
+
+        </div>
+
+        <div id="s6-gemini-chatbox" class="w-full mt-6 p-4 rounded-full bg-[#333537] flex items-center">
+          <div class="flex-shrink-0"><img src="assets/gemini-logo.png" alt="Gemini Icon" class="w-6 h-6"></div>
+          <div id="s6-input-area" class="flex-grow text-left text-gray-400 ml-4">
+            <span id="s6-placeholder-text">Enter a prompt for Gemini</span>
+            <span id="s6-typed-text"></span><span id="s6-cursor" class="opacity-0">|</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Slide 7: Context -->
+    <section class="slide bg-white flex flex-col justify-center items-center text-center p-16" data-theme="light">
+      <h3 class="text-flash-black font-bold text-4xl mb-8">Now let's add <span class="text-flash-coral">Context</span></h3>
+
+      <div class="relative w-full max-w-3xl mx-auto mt-12">
+        <div id="s7-prompt-bubble-container" class="min-h-[260px] relative bg-gray-100 shadow-md text-gray-800 p-6 rounded-xl text-left">
+          <p id="s7-prompt-text" class="text-lg leading-relaxed">
+            <span class="s7-persona">You are a Project Manager at Flash with deep technical knowledge of the Flash Vision LPR (License Plate Recognition) system.</span>
+            <span class="s7-task">Provide a comprehensive technical response detailing how we implement Flash Vision LPR for clients.</span>
+            <span id="s7-context-insertion" class="font-semibold transition-opacity duration-500 opacity-0"></span>
+            <span class="s7-format">Deliver your response as a professional, client-ready Markdown document that can be downloaded and shared.</span>
+          </p>
+
+          <div id="s7-callouts-container">
+            <svg width="0" height="0" style="position:absolute;">
+              <defs>
+                <marker id="s7-arrowhead-blue" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#3257c9" /></marker>
+                <marker id="s7-arrowhead-yellow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#ffdf2b" /></marker>
+                <marker id="s7-arrowhead-coral" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#FF555E" /></marker>
+              </defs>
+            </svg>
+
+            <div id="s7-callout-audience" class="s6-callout callout-blue"><img src="assets/callout-audience.svg" alt="Audience Callout"></div>
+            <div id="s7-callout-goal" class="s6-callout callout-yellow"><img src="assets/callout-goal.svg" alt="Goal Callout"></div>
+            <div id="s7-callout-constraints" class="s6-callout callout-coral"><img src="assets/callout-constraints.svg" alt="Constraints Callout"></div>
+          </div>
+        </div>
+
+        <div id="s7-gemini-chatbox" class="w-full mt-6 p-4 rounded-full bg-[#333537] flex items-center">
+          <div class="flex-shrink-0"><img src="assets/gemini-logo.png" alt="Gemini Icon" class="w-6 h-6"></div>
+          <div id="s7-input-area" class="flex-grow text-left text-gray-400 ml-4">
+            <span id="s7-placeholder">Enter a prompt for Gemini</span>
+            <span id="s7-typed-text"></span><span id="s7-cursor" class="opacity-0">|</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Slide 8: References -->
+    <section class="slide bg-white flex flex-col justify-center items-start text-left p-12 md:p-16" data-theme="light">
+      <h2 class="text-flash-black font-bold text-4xl md:text-5xl mb-2">References: Show, Don't Just Tell</h2>
+      <p class="text-flash-black text-xl md:text-2xl font-light max-w-4xl mb-12">
+        Provide the AI with examples, data, or links to generate more accurate and relevant outputs. The more context you provide, the more tailored the response.
+      </p>
+
+      <div id="s8-reference-grid" class="reference-grid w-full">
+        <div class="reference-card">
+          <div class="card-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z" /></svg>
+          </div>
+          <h3 class="card-title">Text & Docs</h3>
+          <p class="card-description">Plain text, Markdown, or document excerpts.</p>
+          <ul class="card-use-cases">
+            <li>Pasting in raw text or documentation.</li>
+            <li>Summarizing articles or reports.</li>
+          </ul>
+        </div>
+
+        <div class="reference-card">
+          <div class="card-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M17.25 6.75 22.5 12l-5.25 5.25m-10.5 0L1.5 12l5.25-5.25m7.5-3-4.5 16.5" /></svg>
+          </div>
+          <h3 class="card-title">Code Files</h3>
+          <p class="card-description">Source code from .py, .js, .html, etc.</p>
+          <ul class="card-use-cases">
+            <li>Debugging errors and suggesting fixes.</li>
+            <li>Translating code to another language.</li>
+          </ul>
+        </div>
+
+        <div class="reference-card">
+          <div class="card-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M20.25 6.375c0 2.278-3.694 4.125-8.25 4.125S3.75 8.653 3.75 6.375m16.5 0c0-2.278-3.694-4.125-8.25-4.125S3.75 4.097 3.75 6.375m16.5 0v11.25c0 2.278-3.694 4.125-8.25 4.125s-8.25-1.847-8.25-4.125V6.375" /></svg>
+          </div>
+          <h3 class="card-title">Data Files</h3>
+          <p class="card-description">Structured data like .csv, .json, or .xml.</p>
+          <ul class="card-use-cases">
+            <li>Analyzing data for trends.</li>
+            <li>Generating charts or summaries.</li>
+          </ul>
+        </div>
+
+        <div class="reference-card">
+          <div class="card-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="m2.25 15.75 5.159-5.159a2.25 2.25 0 0 1 3.182 0l5.159 5.159m-1.5-1.5 1.409-1.409a2.25 2.25 0 0 1 3.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 0 0 1.5-1.5V6a1.5 1.5 0 0 0-1.5-1.5H3.75A1.5 1.5 0 0 0 2.25 6v12a1.5 1.5 0 0 0 1.5 1.5Zm10.5-11.25h.008v.008h-.008V8.25Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z" /></svg>
+          </div>
+          <h3 class="card-title">Images</h3>
+          <p class="card-description">Visuals like .jpg, .png, or .svg.</p>
+          <ul class="card-use-cases">
+            <li>Describing an image for alt-text.</li>
+            <li>Suggesting design improvements.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Slide 9: Evaluate -->
+    <section class="slide bg-white flex flex-col justify-center items-center text-center p-12" data-theme="light">
+      <h2 class="text-flash-black font-bold text-5xl mb-8">Evaluate: Don't Trust, Verify</h2>
+
+      <div class="w-full max-w-3xl mx-auto flex flex-col gap-4 min-h-[180px]">
+        <div id="s9-user-bubble-container" class="flex justify-end opacity-0 transition-all duration-500 transform translate-y-4">
+          <div id="s9-user-bubble" class="bg-gray-100 shadow-md text-gray-800 p-4 rounded-xl max-w-xl text-left text-xl"></div>
+        </div>
+
+        <div id="s9-ai-bubble-container" class="flex justify-start opacity-0 transition-all duration-500 transform translate-y-4">
+          <div id="s9-ai-bubble" class="relative bg-gray-100 shadow-md text-gray-800 p-4 rounded-xl max-w-xl text-left text-xl">
+            <p>The third planet from the sun is <span id="s9-incorrect-answer">Mars</span>.</p>
+          </div>
+        </div>
+      </div>
+
+      <div id="s9-gemini-chatbox" class="w-full max-w-3xl mx-auto mt-6 p-4 rounded-full bg-[#333537] flex items-center">
+        <div class="flex-shrink-0"><img src="assets/gemini-logo.png" alt="Gemini Icon" class="w-6 h-6"></div>
+        <div class="flex-grow text-left text-gray-400 ml-4">
+          <span id="s9-placeholder"></span>
+          <span id="s9-typed-text"></span><span id="s9-cursor" class="opacity-0">|</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Slide 10: Iterate -->
+    <section class="slide bg-white flex flex-col justify-center items-center text-center p-16" data-theme="light">
+      <h2 class="text-flash-black font-bold text-5xl mb-4">Iterate: A Conversation with AI</h2>
+      <p class="text-flash-black text-2xl font-light max-w-3xl mx-auto">
+        The best results rarely come from the first prompt. Iteration is where the magic happens.
+      </p>
+
+      <div class="s10-triangle-container w-full max-w-2xl h-[350px] my-8 relative">
+
+        <img src="assets/arrow-1.svg" alt="Arrow pointing from Prompt to Response" class="s10-arrow" id="s10-arrow-1" />
+        <img src="assets/arrow-2.svg" alt="Arrow pointing from Response to Refined Prompt" class="s10-arrow" id="s10-arrow-2" />
+        <img src="assets/arrow-3.svg" alt="Arrow pointing from Refined Prompt back to Prompt" class="s10-arrow" id="s10-arrow-3" />
+
+        <div id="s10-card-prompt" class="s10-card">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 s10-user-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" /></svg>
+          <span>Prompt</span>
+        </div>
+
+        <div id="s10-card-response" class="s10-card">
+          <img src="assets/gemini-logo.png" alt="Gemini Logo" class="h-6 w-6"/>
+          <span>Generic Response</span>
+        </div>
+        
+        <div id="s10-card-refined" class="s10-card">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 s10-user-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" /></svg>
+          <span>Refined Prompt</span>
+        </div>
+      </div>
+
+      <p class="text-flash-black text-2xl font-light max-w-3xl mx-auto">
+        Based on what you get back, refine your ask. Think of it as a conversation.
+      </p>
+    </section>
+
+    <!-- Slide 11: Advanced -->
+    <section class="slide bg-white flex flex-col justify-center items-center text-center p-12 md:p-16" data-theme="light">
+      <h2 class="text-flash-black font-bold text-5xl mb-8">Advanced Prompting Techniques</h2>
+      
+      <div id="s11-tab-container" class="flex w-full max-w-3xl border-b border-gray-200">
+        <button class="s11-tab-button active" data-tab="1">Prompt Chaining</button>
+        <button class="s11-tab-button" data-tab="2">Chain-of-Thought</button>
+        <button class="s11-tab-button" data-tab="3">Tree-of-Thought</button>
+        <button class="s11-tab-button" data-tab="4">Meta-Prompting</button>
+      </div>
+
+      <div id="s11-content-container" class="w-full max-w-3xl mt-8 text-left h-64 relative">
+        <div class="s11-content-pane active" data-pane="1">
+          <h3 class="s11-content-title">Break complex tasks into smaller, sequential steps.</h3>
+          <p class="s11-content-description">Instead of one giant prompt, guide the AI through a multi-step process. Each step builds on the previous one, giving you more control and better results.</p>
+          <div class="s11-example">
+            <strong>Example:</strong> Instead of "Create a launch plan," you would chain:
+            <ol class="list-decimal list-inside ml-4 mt-2">
+              <li>"First, identify key market segments for our new product."</li>
+              <li>"Then, develop targeted messaging for each of those segments."</li>
+              <li>"Finally, create a detailed project timeline based on that messaging."</li>
+            </ol>
+          </div>
+        </div>
+
+        <div class="s11-content-pane" data-pane="2">
+          <h3 class="s11-content-title">Ask the AI to explain its reasoning step-by-step.</h3>
+          <p class="s11-content-description">Simply add the phrase "Let's think through this step by step" to your prompt. This forces the AI to show its work, which is invaluable for analysis, problem-solving, and catching logical errors early.</p>
+          <div class="s11-example">
+            <strong>Example Prompt:</strong> "A user is getting error 404 on their profile page after changing their username. Let's think through this step by step to find the likely cause."
+          </div>
+        </div>
+
+        <div class="s11-content-pane" data-pane="3">
+          <h3 class="s11-content-title">Have the AI explore multiple different approaches in parallel.</h3>
+          <p class="s11-content-description">This is useful when you want to compare options instead of committing to a single path. Ask the AI to evaluate different solutions and list the pros and cons for each.</p>
+          <div class="s11-example">
+            <strong>Example Prompt:</strong> "Give me three different approaches to organizing our technical documentation, with pros and cons for each."
+          </div>
+        </div>
+
+        <div class="s11-content-pane" data-pane="4">
+          <h3 class="s11-content-title">Ask the AI to help you write a better prompt.</h3>
+          <p class="s11-content-description">The AI knows what information it needs to perform a task well. You can leverage this by asking it to act as a prompt engineer.</p>
+          <div class="s11-example">
+            <strong>Example Prompt:</strong> "You are an expert prompt engineer. Help me write a prompt to generate technical specifications for our API documentation."
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Slide 12: Common Pitfalls -->
+    <section class="slide bg-white flex flex-col justify-center items-center text-center p-12 md:p-16" data-theme="light">
+      <h2 class="text-flash-black font-bold text-5xl mb-4">Four Refinement Strategies</h2>
+      <p class="text-flash-black text-2xl font-light max-w-3xl mx-auto mb-12">
+        When a prompt isn't giving you what you need, try one of these four approaches.
+      </p>
+
+      <div class="s12-grid-container">
+        <div class="s12-strategy-card">
+          <div class="s12-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" /></svg>
+          </div>
+          <h3 class="s12-title">1. Revisit TCREI</h3>
+          <p class="s12-description">Are you missing context? Is your task specific enough? Re-check the fundamentals first.</p>
+        </div>
+
+        <div class="s12-strategy-card">
+          <div class="s12-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6A2.25 2.25 0 0 1 6 3.75h2.25A2.25 2.25 0 0 1 10.5 6v2.25a2.25 2.25 0 0 1-2.25 2.25H6a2.25 2.25 0 0 1-2.25-2.25V6ZM3.75 15.75A2.25 2.25 0 0 1 6 13.5h2.25a2.25 2.25 0 0 1 2.25 2.25V18a2.25 2.25 0 0 1-2.25 2.25H6A2.25 2.25 0 0 1 3.75 18v-2.25ZM13.5 6a2.25 2.25 0 0 1 2.25-2.25H18A2.25 2.25 0 0 1 20.25 6v2.25A2.25 2.25 0 0 1 18 10.5h-2.25a2.25 2.25 0 0 1-2.25-2.25V6ZM13.5 15.75a2.25 2.25 0 0 1 2.25-2.25H18a2.25 2.25 0 0 1 2.25 2.25V18A2.25 2.25 0 0 1 18 20.25h-2.25A2.25 2.25 0 0 1 13.5 18v-2.25Z" /></svg>
+          </div>
+          <h3 class="s12-title">2. Break It Down</h3>
+          <p class="s12-description">Make the task smaller or more specific. Instead of "write a product overview," try "write a two-paragraph summary focusing on security features."</p>
+        </div>
+
+        <div class="s12-strategy-card">
+          <div class="s12-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M7.5 8.25h9m-9 3H12m-9.75 1.51c0 1.6 1.123 2.994 2.707 3.227 1.129.166 2.27.293 3.423.379.35.026.67.21.865.501L12 21l2.755-4.133a1.14 1.14 0 0 1 .865-.501 48.17 48.17 0 0 0 3.423-.379c1.584-.233 2.707-1.626 2.707-3.228V6.741c0-1.602-1.123-2.995-2.707-3.228A48.394 48.394 0 0 0 12 3c-2.392 0-4.744.175-7.043.513C3.373 3.746 2.25 5.14 2.25 6.741v6.018Z" />
+            </svg>
+          </div>
+          <h3 class="s12-title">3. Try an Analogy</h3>
+          <p class="s12-description">Rephrase your request using a different context, like "Explain this like I'm a new employee," or "Write this as if it's for our FAQ."</p>
+        </div>
+        
+        <div class="s12-strategy-card">
+          <div class="s12-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 6h9.75M10.5 6a1.5 1.5 0 1 1-3 0m3 0a1.5 1.5 0 1 0-3 0M3.75 6H7.5m3 12h9.75m-9.75 0a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0M3.75 18H7.5m9-6h3.75m-3.75 0a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m-9.75 0h9.75" /></svg>
+          </div>
+          <h3 class="s12-title">4. Add Constraints</h3>
+          <p class="s12-description">Be more explicit about what you want or don't want. For example: "Keep it under 200 words," or "Avoid using technical jargon."</p>
+        </div>
+      </div>
+
+      <p class="text-flash-black text-xl italic font-light mt-12">
+        Remember, if a prompt fails, that's feedback. Adjust and try again.
+      </p>
+    </section>
+
+    <!-- Slide 13: Use Cases at Flash -->
+    <section class="slide bg-white flex flex-col justify-center items-center text-center p-12 md:p-16" data-theme="light">
+      <h2 class="text-flash-black font-bold text-5xl mb-4">Using AI Responsibly at Flash</h2>
+      <p class="text-flash-black text-2xl font-light max-w-4xl mx-auto mb-12">
+        With these powerful tools comes responsibility. Let's talk about using AI effectively and safely in our work environment.
+      </p>
+
+      <div class="s13-grid-container">
+        <div class="s13-card">
+          <div class="s13-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" /></svg>
+          </div>
+          <h3 class="s13-title">Data Security</h3>
+          <p class="s13-description">Never put sensitive or confidential information into public AI models. Use our internal tools for sensitive work.</p>
+        </div>
+
+        <div class="s13-card">
+          <div class="s13-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m9-.75a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 3.75h.008v.008H12v-.008Z" /></svg>
+          </div>
+          <h3 class="s13-title">Bias & Hallucinations</h3>
+          <p class="s13-description">AI can be confidently wrong. Always fact-check critical outputs, especially for client-facing content or technical specifications.</p>
+        </div>
+
+        <div class="s13-card">
+          <div class="s13-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m2.25 0H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z" /></svg>
+          </div>
+          <h3 class="s13-title">Company Guidelines</h3>
+          <p class="s13-description">Make sure you're familiar with Flash's AI usage policies. When in doubt, always ask first.</p>
+        </div>
+        
+        <div class="s13-card">
+          <div class="s13-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M17.982 18.725A7.488 7.488 0 0 0 12 15.75a7.488 7.488 0 0 0-5.982 2.975m11.963 0a9 9 0 1 0-11.963 0m11.963 0A8.966 8.966 0 0 1 12 21a8.966 8.966 0 0 1-5.982-2.275M15 9.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" /></svg>
+          </div>
+          <h3 class="s13-title">Human-in-the-Loop</h3>
+          <p class="s13-description">Keep yourself in the review and decision-making process. AI should augment your judgment, not replace it.</p>
+        </div>
+      </div>
+
+      <p class="text-flash-black text-xl italic font-light mt-12">
+        Sometimes, the best decision is not to use AI - especially for high-stakes or regulated content.
+      </p>
+    </section>
+
+    <!-- Slide 14: Key Takeaways -->
+    <section class="slide bg-white flex flex-col justify-center items-center text-center p-12 md:p-16" data-theme="light">
+      <h2 class="text-flash-black font-bold text-5xl mb-12">Key Takeaways</h2>
+      
+      <div class="w-full max-w-3xl space-y-6">
+        <div class="takeaway-card">
+          <div class="takeaway-number">1</div>
+          <p class="takeaway-text">
+            Mastering prompt engineering is about learning to <strong>communicate effectively</strong> with AI systems. It's a skill that will multiply your impact at Flash.
+          </p>
+        </div>
+        
+        <div class="takeaway-card">
+          <div class="takeaway-number">2</div>
+          <p class="takeaway-text">
+            Remember the TCREI framework: <strong>Task, Context, References, Evaluate, Iterate.</strong> This is your foundation for quality results.
+          </p>
+        </div>
+        
+        <div class="takeaway-card">
+          <div class="takeaway-number">3</div>
+          <p class="takeaway-text">
+            <strong>Start with simple use cases</strong> like emails and drafts. Build confidence, then move to more complex applications.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Slide 15: Q&A -->
+    <section class="slide bg-white flex flex-col justify-center items-center text-center p-16" data-theme="light">
+      <h2 class="text-flash-black font-bold text-5xl mb-8">Questions?</h2>
+      <p class="text-flash-black text-2xl font-light max-w-2xl mx-auto">
+        Let's discuss how we can put these techniques to work at Flash!
+      </p>
+    </section>
+  </main>
+
+  <button id="nav-left" class="nav-arrow" role="button" aria-label="Previous Slide">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
+  </button>
+  <button id="nav-right" class="nav-arrow" role="button" aria-label="Next Slide">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+  </button>
+
+  <script src="js/main.js" defer></script>
+</body>
+</html>
