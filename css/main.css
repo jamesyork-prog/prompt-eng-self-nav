@@ -581,3 +581,71 @@ body {
   line-height: 1.6;
   color: #374151; /* gray-700 */
 }
+
+/* ---- Dialog Styles ---- */
+#script-dialog.visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+#script-dialog.visible .dialog-box {
+    transform: translateY(0);
+}
+
+.dialog-box {
+  transform: translateY(-20px);
+  transition: transform 0.3s ease-in-out;
+}
+
+#close-dialog-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+#open-dialog-btn {
+  background-color: #FF555E; /* flash-coral */
+  color: white;
+  transition: transform 0.2s ease-in-out, background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+  border: none;
+  cursor: pointer;
+}
+
+#open-dialog-btn:hover {
+  transform: scale(1.1);
+}
+
+/* Match theme for dialog button */
+#open-dialog-btn.theme-dark {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.6);
+}
+
+#open-dialog-btn.theme-dark:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+  color: white;
+}
+
+#open-dialog-btn.theme-light {
+  background-color: #FF555E;
+  color: white;
+}
+
+#open-dialog-btn.theme-light:hover {
+  background-color: #e0444f; /* A slightly darker coral */
+}
+
+/* Custom scrollbar for dialog content */
+#dialog-content::-webkit-scrollbar {
+  width: 8px;
+}
+#dialog-content::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+#dialog-content::-webkit-scrollbar-thumb {
+  background: #ccc;
+  border-radius: 4px;
+}
+#dialog-content::-webkit-scrollbar-thumb:hover {
+  background: #b3b3b3;
+}

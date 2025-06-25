@@ -16,7 +16,12 @@
   <main class="relative w-full h-screen">
 
     <!-- Slide 1: Title + Welcome -->
-    <section class="slide active bg-white flex flex-col justify-center items-center text-center p-8" data-theme="light">
+    <section class="slide active bg-white flex flex-col justify-center items-center text-center p-8" data-theme="light"
+      data-script="Good afternoon, everyone! My name is James York and I’m a senior project manager on the National MACH team. Thanks for joining today's session on mastering prompt engineering.
+
+I know we're all busy, so I appreciate you taking time to dive into something that's genuinely changing how we work. Whether you're writing code, crafting marketing material, or analyzing data, the skills we cover today will help you work smarter and faster.
+
+Now, I know we have a mix of perspectives on this call. Some of you are already experimenting with AI tools, others might be a bit hesitant, and some are probably wondering if this is just another tech trend. That's completely normal.">
       <h1 class="text-flash-black font-bold text-6xl md:text-8xl mb-8">Mastering Prompt Engineering</h1>
       <p class="text-flash-black text-xl md:text-2xl font-light mb-16">A Flash AI Presentation</p>
       <div class="absolute bottom-10 left-1/2 -translate-x-1/2">
@@ -25,7 +30,10 @@
     </section>
     <!-- Slide 2: Why This Matters at Flash -->
 
-    <section class="slide bg-white flex flex-col justify-center items-center text-center p-16" data-theme="light">
+    <section class="slide bg-white flex flex-col justify-center items-center text-center p-16" data-theme="light"
+      data-script="Here's the thing: generative AI isn't going anywhere. But to get real value from it - whether you're using our Gemini and NotebookLM access, or tools like ChatGPT and Claude for non-sensitive work - you need to know how to communicate effectively with these systems.
+
+Think of today as learning a new language. A language that can help you automate tedious tasks, speed up research, generate better technical documentation, and even brainstorm ideas for product launches.">
       <h2 class="text-flash-black font-bold text-5xl mb-8">Why This Matters at Flash</h2>
       <p class="text-flash-black text-2xl font-light max-w-3xl mx-auto mb-16">
         Generative AI is becoming core to our daily work. To get real value - whether you’re using Gemini, NotebookLM, ChatGPT, or Claude - you need to communicate effectively with these systems. Think of today as learning a new language, one that automates tasks, accelerates research, and amplifies your expertise.
@@ -48,7 +56,14 @@
     </section>
 
     <!-- Slide 3: What is a Prompt? -->
-    <section class="slide bg-white flex flex-col justify-center items-center text-center p-16" data-theme="light">
+    <section class="slide bg-white flex flex-col justify-center items-center text-center p-16" data-theme="light"
+      data-script="First things first: what exactly is a prompt?
+
+At its core, a prompt is simply the instruction or question you give to an AI system. But here's what most people miss—the quality of that prompt directly determines the quality of the output you get back.
+
+This is the garbage in, garbage out metaphor.
+
+Prompting is both an art and a science. There's creativity involved, but there are also proven techniques we can learn.">
       <h2 class="text-flash-black font-bold text-5xl mb-8">What is a Prompt?</h2>
       <p class="text-flash-black text-2xl font-light max-w-3xl mx-auto">
         A prompt is the instruction or question you give to an AI system. The quality of your prompt determines the quality of your output—prompting is both an art and a science.
@@ -71,7 +86,16 @@
     </section>
 
     <!-- Slide 4: Example Comparison -->
-    <section class="slide bg-white flex flex-col justify-center items-center text-center p-12" data-theme="light">
+    <section class="slide bg-white flex flex-col justify-center items-center text-center p-12" data-theme="light"
+      data-script="Let me show you what I mean with a quick example relevant to our work at Flash.
+
+If I prompt: &quot;Write about our new product&quot; I'll get something generic and probably not very useful.
+
+But if I prompt: &quot;You are a technical writer at Flash. Write a brief overview of our new analytics dashboard for a client-facing knowledge base article. Focus on key benefits for enterprise users and include a clear call-to-action for scheduling a demo.&quot;
+
+See the difference? Same Intended output , completely different inputs. The second prompt gives context, specifies the role, defines the audience, and sets clear expectations.
+
+This is effective prompting, and today we'll learn how to do this systematically.">
       <h3 class="text-flash-black font-bold text-4xl mb-8">Prompt Example</h3>
       <div class="grid grid-cols-1 md:grid-cols-2 gap-10 w-full max-w-5xl">
         <div class="flex flex-col">
@@ -104,7 +128,17 @@
     </section>
 
     <!-- Slide 5: TCREI Framework Overview (Redesigned) -->
-    <section class="slide bg-white flex flex-col justify-center items-center text-center p-12" data-theme="light">
+    <section class="slide bg-white flex flex-col justify-center items-center text-center p-12" data-theme="light"
+      data-script="The foundation of effective prompting is what I call the TCREI framework. This comes from Google's prompting essentials, and it's a systematic approach that works across all AI tools.
+
+TCREI stands for:
+-Task
+-Context
+-References
+-Evaluate
+-Iterate
+
+Let me walk you through each component.">
     <h2 class="text-flash-black font-bold text-5xl mb-4">The TCREI Framework</h2>
       <p class="text-flash-black text-2xl font-light max-w-3xl mx-auto mb-12">
         A systematic approach for getting the best from any AI tool.
@@ -152,7 +186,19 @@
     </section>
 
     <!-- Slide 6: Task -->
-    <section class="slide bg-white flex flex-col justify-center items-center text-center p-16" data-theme="light">
+    <section class="slide bg-white flex flex-col justify-center items-center text-center p-16" data-theme="light"
+      data-script="Let's break down Task using a real example.
+
+Here we can see three key components that make up a strong task:
+
+First, Persona: &quot;You are a Project Manager at Flash with deep technical knowledge of the Flash Vision LPR system.&quot; This isn't just playing pretend—persona actually guides the AI's knowledge base, tone, and perspective. It tells the AI what expertise level to draw from and how to communicate.
+
+Second, Core Task: &quot;Provide a comprehensive technical response detailing how we implement Flash Vision LPR for clients.&quot; This is your specific ask—what exactly you want the AI to do.
+
+Third, Format: &quot;Deliver your response as a professional, client-ready Markdown document.&quot; Be explicit about the output format you want—email, bullet points, code snippet, structured document, whatever fits your needs.
+
+Remember: vague tasks get vague results. Specific tasks get useful results.
+">
       <h3 class="text-flash-black font-bold text-4xl mb-8">Let's break down a strong <span class="text-flash-coral">Task</span></h3>
 
       <div class="relative w-full max-w-3xl mx-auto mt-12">
@@ -187,7 +233,20 @@
     </section>
 
     <!-- Slide 7: Context -->
-    <section class="slide bg-white flex flex-col justify-center items-center text-center p-16" data-theme="light">
+    <section class="slide bg-white flex flex-col justify-center items-center text-center p-16" data-theme="light"
+      data-script="Now let's look at Context. This is the background information that transforms a good prompt into a great one.
+
+Context answers three key questions:
+
+Who's the audience? &quot;The client is currently using a competitor's LPR hardware.&quot; This tells the AI what knowledge level to assume and what comparisons might be relevant.
+
+What's the goal? &quot;They're seeking a thorough explanation of our implementation process&quot; and &quot;They expect specifics on how our approach compares.&quot; This shapes the depth and focus of the response.
+
+What are the constraints? &quot;Including deployment steps, integration with existing systems, hardware requirements, and post-installation support.&quot; This defines the scope and ensures nothing important gets missed.
+
+Context helps the AI understand not just what you want, but why you want it and how it will be used.
+
+">
       <h3 class="text-flash-black font-bold text-4xl mb-8">Now let's add <span class="text-flash-coral">Context</span></h3>
 
       <div class="relative w-full max-w-3xl mx-auto mt-12">
@@ -225,7 +284,20 @@
     </section>
 
     <!-- Slide 8: References -->
-    <section class="slide bg-white flex flex-col justify-center items-start text-left p-12 md:p-16" data-theme="light">
+    <section class="slide bg-white flex flex-col justify-center items-start text-left p-12 md:p-16" data-theme="light"
+      data-script="References are your examples. This is incredibly powerful to show the AI the format, style, or approach you want.
+
+You can include sample outputs, link to similar documents, or use what's called &quot;few-shot&quot; prompting where you give the AI a few question-and-answer pairs to learn from. 
+
+Think of it like training a new team member: examples are often clearer than explanations.
+
+Humans use implied context as we talk to one another we assume that certain information is already know and therefore we don't need to explain as much as we would if we were talking to someone else we just met from a different country and background 
+
+AI knows a lot but at the end of the day it doesn't know you. 
+Two very important document types to highlight are data files and Markdown documents. While people are used to uploading PDFs and copy and pasting text, Markdown and other plain text formats actually reduce hallucinations in AI models.
+The raw text format provides clean, structured information that LLMs can easily interpret whereas complex formatting in PDFs can confuse models and lead to inaccurate interpretations.
+
+">
       <h2 class="text-flash-black font-bold text-4xl md:text-5xl mb-2">References: Show, Don't Just Tell</h2>
       <p class="text-flash-black text-xl md:text-2xl font-light max-w-4xl mb-12">
         Provide the AI with examples, data, or links to generate more accurate and relevant outputs. The more context you provide, the more tailored the response.
@@ -283,7 +355,14 @@
     </section>
 
     <!-- Slide 9: Evaluate -->
-    <section class="slide bg-white flex flex-col justify-center items-center text-center p-12" data-theme="light">
+    <section class="slide bg-white flex flex-col justify-center items-center text-center p-12" data-theme="light"
+      data-script="Evaluate means don't take the output at face value. Check it for accuracy, bias, completeness, and usefulness.
+
+This is especially important for technical documentation or client-facing content. AI can be confidently wrong, so always keep a human in the loop for critical outputs.
+
+Your expertise is what makes the AI output valuable—not the other way around.
+
+">
       <h2 class="text-flash-black font-bold text-5xl mb-8">Evaluate: Don't Trust, Verify</h2>
 
       <div class="w-full max-w-3xl mx-auto flex flex-col gap-4 min-h-[180px]">
@@ -308,7 +387,16 @@
     </section>
 
     <!-- Slide 10: Iterate -->
-    <section class="slide bg-white flex flex-col justify-center items-center text-center p-16" data-theme="light">
+    <section class="slide bg-white flex flex-col justify-center items-center text-center p-16" data-theme="light"
+      data-script="Iterate is where the magic happens. The best results almost never come from your first prompt.
+
+Based on what you get back, refine your task. Add more context, adjust the format, or break down the task into smaller pieces.
+
+Think of it as a conversation, not a one-time request.
+
+As you transition from casual chatbot interactions to professional AI outputs, remember that this is a strategic, iterative process. Referring back to the 'Evaluate' step we discussed earlier—if you don't carefully review your AI's output, unwanted text or even hallucinations can slip through unnoticed. This is exactly why thorough evaluation and deliberate, targeted iterations are essential. They don't just improve quality—they actually get you to your desired outcome faster and more reliably.
+
+">
       <h2 class="text-flash-black font-bold text-5xl mb-4">Iterate: A Conversation with AI</h2>
       <p class="text-flash-black text-2xl font-light max-w-3xl mx-auto">
         The best results rarely come from the first prompt. Iteration is where the magic happens.
@@ -342,7 +430,36 @@
     </section>
 
     <!-- Slide 11: Advanced -->
-    <section class="slide bg-white flex flex-col justify-center items-center text-center p-12 md:p-16" data-theme="light">
+    <section class="slide bg-white flex flex-col justify-center items-center text-center p-12 md:p-16" data-theme="light"
+      data-script="Now let's go beyond the basics here and talk about some advanced techniques that are especially powerful for complex tasks and technical work.
+
+Prompt Chaining means breaking complex tasks into smaller steps and having the AI handle each in sequence.
+
+For example, instead of asking &quot;Create a comprehensive product launch plan,&quot; you might chain:
+1. First, identify key market segments
+2. Then, develop messaging for each segment
+3. Finally, create a timeline and resource allocation
+
+Each step builds on the previous one, giving you more control and better results.
+
+Chain-of-Thought prompting means asking the AI to show its work—to explain its reasoning step by step. Simply add something like &quot;Let's think through this step by step&quot; or &quot;Walk me through your reasoning.&quot; This is especially useful for problem-solving, analysis, and technical troubleshooting. You can see the logic and catch errors early.
+
+Tree-of-Thought takes this further by having the AI explore multiple possible approaches in parallel. You might ask: &quot;Give me three different approaches to organizing our technical documentation, with pros and cons for each.&quot; This gives you options to choose from rather than committing to a single path.
+
+And here's a clever one: Meta-prompting. Ask the AI to help you create better prompts. &quot;Help me write a prompt to generate technical specifications for our API documentation&quot; or &quot;What information would you need to write effective client onboarding emails?&quot;
+
+The AI can actually help you improve your prompting skills. This is kind of a big one for us right now, especially individuals who are learning the TCREI framework for the first time, because it's going to help you build that.
+
+At the end of the day, you could go in, and maybe you don't have enough time to really sit down and type out the exact format that you need. You can brain dump into a chat with, choose your LLM, preferably Gemini at this point and have it generate the prompt for you. Have it structure that.
+
+Now, the key here is that you still need to evaluate that prompt that it generates for you. If you don't, you don't necessarily know what you're about to ask the other chat when you copy and paste that prompt out into the chat that you're actually trying to get the desired output from. And so what you could end up with is an output that's completely not even grounded in reality. So it's definitely one of those things where this process is always going to fall back on itself.
+
+Yes, you're meta prompting. You're allowing AI to build it for you. But You still need to evaluate it to make sure that the prompt it generated is on target.
+
+And then at that point, you can use it. But the key here is that it's going to help you learn. And as you do this and you evaluate, the evaluation is forcing you to go back and learn what inevitably you're having AI help you do.
+
+So people who are properly using AI are not just using it to substitute knowledge. In reality, it's helping build that knowledge by getting you the output that you're still looking for, but doing so in a way that if you're doing this properly, you're going to learn from it.
+">
       <h2 class="text-flash-black font-bold text-5xl mb-8">Advanced Prompting Techniques</h2>
       
       <div id="s11-tab-container" class="flex w-full max-w-3xl border-b border-gray-200">
@@ -393,7 +510,17 @@
     </section>
 
     <!-- Slide 12: Common Pitfalls -->
-    <section class="slide bg-white flex flex-col justify-center items-center text-center p-12 md:p-16" data-theme="light">
+    <section class="slide bg-white flex flex-col justify-center items-center text-center p-12 md:p-16" data-theme="light"
+      data-script="Let's be honest—your first prompt probably won't be perfect. That's normal and expected.
+
+When a prompt isn't giving you what you need, try these four approaches:
+1. Revisit TCREI - Are you missing context? Is your task specific enough?
+2. Break it down - Make the task smaller or more specific. Instead of &quot;write a product overview,&quot; try &quot;write a two-paragraph summary focusing on security features.&quot;
+3. Try an analogy - Rephrase your ask in a different context. &quot;Explain this like you're training a new employee&quot; or &quot;Write this as if it's going in our FAQ.&quot;
+4. Add constraints - Be more explicit about what you want or don't want. &quot;Keep it under 200 words&quot; or &quot;Avoid technical jargon.&quot;
+
+Remember, if a prompt fails, that's feedback. Just Adjust and try again.
+">
       <h2 class="text-flash-black font-bold text-5xl mb-4">Four Refinement Strategies</h2>
       <p class="text-flash-black text-2xl font-light max-w-3xl mx-auto mb-12">
         When a prompt isn't giving you what you need, try one of these four approaches.
@@ -441,7 +568,20 @@
     </section>
 
     <!-- Slide 13: Use Cases at Flash -->
-    <section class="slide bg-white flex flex-col justify-center items-center text-center p-12 md:p-16" data-theme="light">
+    <section class="slide bg-white flex flex-col justify-center items-center text-center p-12 md:p-16" data-theme="light"
+      data-script="With these powerful tools comes responsibility. Let's talk about using AI effectively and safely in our work environment.
+
+Data Security: Never put sensitive or confidential information into public AI models. Use our internal tools like Gemini and NotebookLM for sensitive work, and external tools like ChatGPT or Claude only for non-sensitive tasks.
+
+Bias and Hallucinations: AI can be confidently wrong. Always fact-check critical outputs, especially for client-facing content or technical specifications.
+
+Company Guidelines: Make sure you're familiar with Flash's AI usage policies. When in doubt, ask.
+
+Human-in-the-Loop: Keep yourself in the review and decision-making process. AI should augment your judgment, not replace it.
+
+And sometimes, the best decision is not to use AI—especially for high-stakes or regulated content.
+
+">
       <h2 class="text-flash-black font-bold text-5xl mb-4">Using AI Responsibly at Flash</h2>
       <p class="text-flash-black text-2xl font-light max-w-4xl mx-auto mb-12">
         With these powerful tools comes responsibility. Let's talk about using AI effectively and safely in our work environment.
@@ -487,7 +627,16 @@
     </section>
 
     <!-- Slide 14: Key Takeaways -->
-    <section class="slide bg-white flex flex-col justify-center items-center text-center p-12 md:p-16" data-theme="light">
+    <section class="slide bg-white flex flex-col justify-center items-center text-center p-12 md:p-16" data-theme="light"
+      data-script="Let's wrap up with the key takeaways:
+
+Mastering prompt engineering is about learning to communicate effectively with AI systems. It's a skill that will multiply your impact at Flash.
+
+Remember the TCREI framework: Task, Context, References, Evaluate, Iterate.
+
+Start with simple use cases—client emails, documentation drafts, brainstorming sessions. Build confidence, then move to more complex applications.
+
+">
       <h2 class="text-flash-black font-bold text-5xl mb-12">Key Takeaways</h2>
       
       <div class="w-full max-w-3xl space-y-6">
@@ -515,7 +664,8 @@
     </section>
 
     <!-- Slide 15: Q&A -->
-    <section class="slide bg-white flex flex-col justify-center items-center text-center p-16" data-theme="light">
+    <section class="slide bg-white flex flex-col justify-center items-center text-center p-16" data-theme="light"
+      data-script="And with that, I'll open it up for questions. Thank you.">
       <h2 class="text-flash-black font-bold text-5xl mb-8">Questions?</h2>
       <p class="text-flash-black text-2xl font-light max-w-2xl mx-auto">
         Let's discuss how we can put these techniques to work at Flash!
@@ -529,6 +679,21 @@
   <button id="nav-right" class="nav-arrow" role="button" aria-label="Next Slide">
     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
   </button>
+
+  <button id="open-dialog-btn" class="nav-arrow" role="button" aria-label="Show Presenter Notes" style="bottom: 1.5rem; top: auto; right: 1.5rem; width: 56px; height: 56px; transform: none;">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"/></svg>
+  </button>
+
+  <!-- Dialog/Chat Bubble for Slide Script -->
+  <div id="script-dialog" class="fixed inset-0 bg-black bg-opacity-60 flex justify-center items-center z-[1000] opacity-0 pointer-events-none transition-opacity duration-300">
+    <div class="dialog-box bg-white p-8 rounded-xl shadow-2xl max-w-2xl w-[90%] relative transition-transform duration-300 -translate-y-5">
+      <button id="close-dialog-btn" class="absolute top-3 right-3 text-gray-400 hover:text-gray-800 text-4xl leading-none font-bold" aria-label="Close dialog">&times;</button>
+      <h4 id="dialog-title" class="font-bold text-2xl mb-4 text-gray-900">Presenter Notes</h4>
+      <div id="dialog-content" class="text-gray-700 max-h-[60vh] overflow-y-auto text-lg leading-relaxed pr-4">
+        <!-- Script content will be injected here -->
+      </div>
+    </div>
+  </div>
 
   <script src="js/main.js" defer></script>
 </body>
